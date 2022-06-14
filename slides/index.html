@@ -49,6 +49,13 @@
       <!--***************************************************************************-->
 
       <section>
+        <h2><i class="qt-yellow">PSA</i></h2>
+        <p>
+          You can find the slides in <a href="https://qtinfo.dev/qtforpython_qtdevcon22">qtinfo.dev/qtforpython_qtdevcon22</a>
+        </p>
+      </section>
+
+      <section>
         <h3><i class="yellow">Python</i> and <i class="green">Qt</i><br/>are roughly the same age</h3>
         <img style="width: 100px;margin-right: 50px;" src="img/python.svg" />
         <img style="width: 110px;margin-left:  50px;" src="img/qt_green.png" />
@@ -56,7 +63,34 @@
 
       <section>
         <h3>Besides their <i class="qt-blue">maturity</i>,<br/>both stand out for one <i class="qt-green">common goal</i>:</h3>
-        <h2><i class="qt-yellow">simplicity</i></h2>
+        <h2 class="fragment"><i class="qt-yellow">simplicity</i></h2>
+      </section>
+
+      <section>
+        <h3>Is Python <i class="yellow">simpler</i> than C++?</h3>
+        <pre style="font-size: 80%;width: 70%;"><code class="python" data-trim data-noescape>
+        def add(a: int, b: int) -> int:
+          return a + b
+
+        add(30, 12)
+        # 42
+        </code></pre>
+      </section>
+
+      <section>
+        <span class="fragment">
+        <pre style="font-size: 80%;width: 70%;"><code class="python" data-trim data-noescape>
+        # n -> int
+        if n&~-n<1:
+            # ???
+        </code></pre>
+        </span>
+
+        <span class="fragment">
+        <pre class="fragment" style="font-size: 80%;width: 70%;"><code class="python" data-trim data-noescape>
+        _="_=%r;print(_%%_)";print(_%_)
+        </code></pre>
+        </span>
       </section>
 
       <section>
@@ -165,7 +199,7 @@
       </section>
 
       <section>
-      <h3>"Pythonizing" Qt</h3>
+      <h3>"Pythonizing" Qt 🐍</h3>
         <div class="container">
           <div class="fragment" style="float: left; width: 30%;">
             <pre style="font-size: 40%;width: 100%;"><code class="python" data-trim data-noescape>
@@ -254,33 +288,46 @@
                 <i class="yellow"><code>deque(QList)</code></i>
             </li>
             <li>1 million elements</li>
-            <li>Adding and Reading</li>
+            <li>Adding and Poping</li>
           </ul>
-          <p class="fragment" data-fragment-index="3" style="font-size: 80%; margin-top: 30px;">
+          <p class="fragment" data-fragment-index="5" style="font-size: 80%; margin-top: 30px;">
             <i class="qt-yellow">Extreme case, but not impossible 😅</i>
           </p>
         </div>
         <div id="right" class="fragment" data-fragment-index="2">
-        <pre style="font-size: 50%; width: 90%;"><code class="bash" data-trim data-noescape>
-        # Appending
-        Opaque QPointList 0.55s
-        Python list 0.79s
-        Python deque 0.84s
-        - 51% faster (list)
+          <span class="fragment" data-fragment-index="2">
+          <pre style="font-size: 50%; width: 90%;"><code class="bash" data-trim data-noescape>
+          # Appending
+          Opaque QPointList 0.55s
+          Python list 0.79s
+          Python deque 0.84s
+          - 51% faster (list)
+          </code></pre>
+          </span>
 
-        # Pop the first element
-        Opaque QPointList 0.07s
-        Python list 69.28s
-        - 96831% faster
+          <span class="fragment" data-fragment-index="3">
+          <pre style="font-size: 50%; width: 90%;"><code class="bash" data-trim data-noescape>
+          # Pop the first element
+          Opaque QPointList 0.07s
+          Python list 69.28s
+          - 96831% faster
+          </code></pre>
+          </span>
 
-        # Pop the first element
-        Opaque QPointList 0.07s
-        Python deque 0.29s
-        - 298%
-        </code></pre>
+          <span class="fragment" data-fragment-index="4">
+          <pre style="font-size: 50%; width: 90%;"><code class="bash" data-trim data-noescape>
+          # Pop the first element
+          Opaque QPointList 0.07s
+          Python deque 0.29s
+          - 298%
+          </code></pre>
+          </span>
         </div>
       </section>
 
+      <section>
+        <h3>Project distribution and packaging 📦</h3>
+      </section>
 
       <section>
         <h3>Compatible with many freezers and compilers</h3>
@@ -329,8 +376,8 @@
               <td>MIT</td>
               <td>partial</td>
               <td>partial</td>
-              <td>✅</td>
-              <td>✅</td>
+              <td>❌</td>
+              <td>❌</td>
               <td>✅</td>
             </tr>
             <tr>
@@ -365,6 +412,10 @@
       </section>
 
       <section>
+        <h3>Does everyone likes <i class="yellow">vanilla</i>? 🍨</h3>
+      </section>
+
+      <section>
         <h3>Not only <i class="yellow">vanilla</i> Python 🍨</h3>
         <div id="left30">
           <img src="img/pypy-logo.svg" />
@@ -384,33 +435,25 @@
 
       <section>
         <h3>The <i class="yellow">mandelbrot</i> example</h3>
+        <p style="font-size: 0.5em;"><a href="https://bugreports.qt.io/browse/PYSIDE-535">bugreports.qt.io/browse/PYSIDE-535</a></p>
         <div id="left">
           <pre style="width: 90%;font-size: 45%;"><code class="bash" data-trim data-noescape>
           # Python
-
-          1/8, max ite: 96, time: 1199ms
-          2/8, max ite: 288, time: 1377ms
-          3/8, max ite: 1056, time: 2.336s
-          4/8, max ite: 4128, time: 6.058s
-          5/8, max ite: 16416, time: 21.032s
-          6/8, max ite: 65568, time: 80.855s
-          7/8, max ite: 262176, time: 321.585s
-          8/8, max ite: 1048608, time: 1278.869s
-
+          1/8, max ite: 96, time: 4.111s
+          2/8, max ite: 288, time: 7.179s
+          3/8, max ite: 1056, time: 22.156s
+          4/8, max ite: 4128, time: 82.706s
+          5/8, max ite: 16416, time: 371.348s
           </code></pre>
         </div>
         <div id="right">
           <pre style="width: 90%;font-size: 45%;"><code class="bash" data-trim data-noescape>
           # PyPy
-
-          1/8, max ite: 96, time: 1220ms
-          2/8, max ite: 288, time: 1375ms
-          3/8, max ite: 1056, time: 2.224s
-          4/8, max ite: 4128, time: 5.507s
-          5/8, max ite: 16416, time: 18.597s
-          6/8, max ite: 65568, time: 70.654s
-          7/8, max ite: 262176, time: 277.769s
-          8/8, max ite: 1048608, time: 1116.007s
+          1/8, max ite: 96, time: 4.732s
+          2/8, max ite: 288, time: 4.99s
+          3/8, max ite: 1056, time: 6.872s
+          4/8, max ite: 4128, time: 12.451s
+          5/8, max ite: 16416, time: 33.341s
           </code></pre>
         </div>
       </section>
@@ -478,7 +521,7 @@
 
       <section>
         <h4>Custom Python Bindings (2/2)</h4>
-        <video style="width: 80%;" controls muted data-autoplay src="videos/helloworld.mp4"></video>
+        <video style="width: 80%;" muted data-autoplay src="videos/helloworld.mp4"></video>
       </section>
 
       <section>
@@ -530,10 +573,11 @@ layout.addWidget(widget_cpp)
       </section>
 
       <section>
-        <h2>And many other features</h2>
-        <ul>
-          <li>Automatic container conversions</li>
-          <li>Free functions</li>
+        <h2>And many other features ⚙️</h2>
+        <ul style="font-size: 80%;">
+          <li>Reduce generated wrapper code</li>
+          <li>Automatic container conversions and primitive types</li>
+          <li>Free functions (variadic functions and flexible arg checking)</li>
         </ul>
       </section>
 
@@ -541,13 +585,13 @@ layout.addWidget(widget_cpp)
         <h2>QtScrypt (1/2)</h2>
         <div id="left">
           <ul style="font-size: 80%; margin-top: 10%;">
-            <li><i class="qt-yellow">Inspired</i> by QtScript, <i class="red">not</i> a port</li>
-            <li>A <i class="qt-green">dynamic</i> way to interact with Python from C++</li>
-            <li>Enabling Python modules within C++ 🐍</li>
-            <li><i class="qt-blue">proof of concept</i></li>
+            <li class="fragment"><i class="qt-yellow">Inspired</i> by QtScript, <i class="red">not</i> a port</li>
+            <li class="fragment">A <i class="qt-green">dynamic</i> way to interact with Python from C++</li>
+            <li class="fragment">Enabling Python modules within C++ 🐍</li>
+            <li class="fragment"><i class="qt-blue">proof of concept</i></li>
           </ul>
         </div>
-        <div id="right">
+        <div class="fragment" id="right">
           <pre style="font-size: 50%;width: 100%;"><code class="cpp" data-trim data-noescape>
 
 // Simple Engine
@@ -595,7 +639,9 @@ qDebug() &lt;&lt; f1.call(args1);
         <ul>
           <li>Improve compatibility in the <i class="qt-blue">Python ecosystem</i></li>
           <li>Improve <i class="qt-green">cross compilation</i> ⚙️</li>
-          <li>Going mobile, and joining the WebAssembly efforts</li>
+          <li>PoC on mobile 📱</li>
+          <li>Continue with the WebAssembly efforts 🚀</li>
+          <li class="fragment"><i class="qt-yellow">...and probably your own requests!</i></li>
         </ul>
       </section>
 
@@ -664,11 +710,10 @@ qDebug() &lt;&lt; f1.call(args1);
   <!-- 2. Create hidden header/footer <div> -->
   <div id="hidden" style="display:none;">
     <div id="header">
-      <div id="header-left"><img src="img/qt.png" style="width: 100px;margin-left: 30px;" /></div>
+      <div id="header-left"><img src="img/logo_bw.png" style="width: 150px;margin-left: 30px;" /></div>
       <div id="header-right"></div>
       <div id="footer-left">
         <p style="font-size: 14pt;margin-left: 20px;">
-          <img class="clean-icon" src="img/logo_bw.png" />
           <i class="white">Qt DevCon 2022 | June 15, 2022</i> | <i class="qt-green">@cmaureir</i>
       </div>
   </div>
